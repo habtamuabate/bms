@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: bid-management-system
+    env: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn bid_project.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bid_management_db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: WEB_CONCURRENCY
+        value: 4
+
+databases:
+  - name: bid_management_db
+    plan: free
