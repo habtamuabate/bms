@@ -19,4 +19,4 @@ services:
 
 databases:
   - name: bid_management_db
-    plan: free # Create static directory and a simple CSS file
+    plan: free
